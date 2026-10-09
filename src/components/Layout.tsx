@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LayoutDashboard, Package, ShoppingCart, DollarSign, LogOut, Cookie, UserSwitch } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingCart, DollarSign, LogOut, Cookie, UserSwitch, Menu } from 'lucide-react';
 
 const Layout = () => {
   const { user, logout, toggleDemoRole } = useAuth();
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -33,7 +34,7 @@ const Layout = () => {
   return (
     <div className="app-container">
       {/* Sidebar */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', padding: '0 0.5rem' }}>
           <div style={{ backgroundColor: 'var(--accent-primary)', color: 'white', padding: '0.5rem', borderRadius: 'var(--radius-md)' }}>
             <Cookie size={24} />
@@ -42,23 +43,23 @@ const Layout = () => {
         </div>
 
         <nav style={{ flex: 1 }}>
-          <NavLink to="/" style={({ isActive }) => navItemStyle(isActive)}>
+          <NavLink to="/" style={({ isActive }) => navItemStyle(isActive)} onClick={() => setIsMobileMenuOpen(false)}>
             <LayoutDashboard size={20} />
             <span>Dashboard</span>
           </NavLink>
           
-          <NavLink to="/pos" style={({ isActive }) => navItemStyle(isActive)}>
+          <NavLink to="/pos" style={({ isActive }) => navItemStyle(isActive)} onClick={() => setIsMobileMenuOpen(false)}>
             <ShoppingCart size={20} />
             <span>Punto de Venta</span>
           </NavLink>
           
-          <NavLink to="/inventory" style={({ isActive }) => navItemStyle(isActive)}>
+          <NavLink to="/inventory" style={({ isActive }) => navItemStyle(isActive)} onClick={() => setIsMobileMenuOpen(false)}>
             <Package size={20} />
             <span>Inventario</span>
           </NavLink>
 
           {isAdmin && (
-            <NavLink to="/finance" style={({ isActive }) => navItemStyle(isActive)}>
+            <NavLink to="/finance" style={({ isActive }) => navItemStyle(isActive)} onClick={() => setIsMobileMenuOpen(false)}>
               <DollarSign size={20} />
               <span>Finanzas</span>
             </NavLink>
@@ -98,12 +99,19 @@ const Layout = () => {
         </div>
       </aside>
 
+      <div className="mobile-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+
       {/* Main Content */}
       <main className="main-content">
         <header className="topbar">
-          <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 500 }}>
-            Bienvenido(a), {user.name}
-          </h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button className="menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
+              <Menu size={24} />
+            </button>
+            <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 500 }}>
+              Bienvenido(a), {user.name}
+            </h2>
+          </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
              {/* Additional topbar items could go here */}
           </div>

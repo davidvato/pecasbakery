@@ -65,7 +65,7 @@ const POS = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: '2rem', height: '100%', flexDirection: 'row' }}>
+    <div className="pos-container" style={{ display: 'flex', gap: '2rem', height: '100%', flexDirection: 'row' }}>
       
       {/* Products Grid */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -90,7 +90,7 @@ const POS = () => {
       </div>
 
       {/* Cart Sidebar */}
-      <div className="card" style={{ width: '380px', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 150px)', position: 'sticky', top: 0 }}>
+      <div className="card pos-cart" style={{ width: '380px', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 150px)', position: 'sticky', top: 0 }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', marginBottom: '1rem' }}>
           <ShoppingCart size={20} />
           Pedido Actual
