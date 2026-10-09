@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { RawMaterial, Product, Sale, Expense, SaleItem } from '../types';
+import type { RawMaterial, Product, Sale, Expense, SaleItem } from '../types';
 import { mockRawMaterials, mockProducts, mockSales, mockExpenses } from '../data/mockData';
 
 interface AppDataContextType {

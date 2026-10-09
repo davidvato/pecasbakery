@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppData } from '../context/AppDataContext';
-import { Product, SaleItem } from '../types';
+import type { Product, SaleItem } from '../types';
 import { ShoppingCart, Plus, Minus, Trash2, CheckCircle2 } from 'lucide-react';
 
 const POS = () => {

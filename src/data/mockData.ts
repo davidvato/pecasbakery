@@ -1,4 +1,4 @@
-import { RawMaterial, Product, Sale, Expense } from '../types';
+import type { RawMaterial, Product, Sale, Expense } from '../types';
 
 export const mockRawMaterials: RawMaterial[] = [
   { id: 'rm1', name: 'Harina de Trigo', unit: 'kg', stock: 15, minStockAlert: 5, unitCost: 1.2 },
